@@ -112,7 +112,7 @@ function ParticleBackground() {
 }
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <ParticleBackground />
@@ -210,12 +210,12 @@ function HomepageShowcase() {
     {
       title: 'Entity Application Marketplace',
       description: 'Built-in applications like NetLogo modeling, GIS maps, Code servers. Quickly transform entity applications into agent-based solutions.',
-      image: '/img/slide2.png',
+      image: '/img/slide3.png',
     },
     {
       title: 'Universal Knowledge Base',
       description: 'Built-in LightRAG/GraphRAG/Graphiti graph knowledge base, compatible with FastGPT/Dify/RagFlow external platforms.',
-      image: '/img/slide3.png',
+      image: '/img/slide2.png',
     },
     {
       title: 'Dual-Engine Rule System',
@@ -257,20 +257,22 @@ function HomepageShowcase() {
   );
 }
 
-function TimelineMilestone({date, title, description, icon, isLeft, completed}: {
+function TimelineMilestone({ date, title, description, icon, isLeft, completed, status }: {
   date: string;
   title: string;
   description: string;
   icon: string;
   isLeft: boolean;
   completed?: boolean;
+  status?: string;
 }) {
   return (
     <div className={clsx(styles.timelineItem, isLeft ? styles.timelineLeft : styles.timelineRight)}>
       <div className={styles.timelineDate}>{date}</div>
-      <div className={clsx(styles.timelineDot, completed && styles.timelineDotCompleted)}></div>
-      <div className={clsx(styles.timelineContent, completed && styles.timelineContentCompleted)}>
+      <div className={clsx(styles.timelineDot, completed && styles.timelineDotCompleted, status === 'in-progress' && styles.timelineDotInProgress)}></div>
+      <div className={clsx(styles.timelineContent, completed && styles.timelineContentCompleted, status === 'in-progress' && styles.timelineContentInProgress)}>
         {completed && <span className={styles.completedBadge}>Completed</span>}
+        {status === 'in-progress' && <span className={styles.inProgressBadge}>In Progress</span>}
         <div className={styles.timelineIcon}>{icon}</div>
         <Heading as="h3" className={styles.timelineTitle}>{title}</Heading>
         <p className={styles.timelineDescription}>{description}</p>
@@ -314,6 +316,7 @@ function HomepageTimeline() {
       title: 'Parallel Laboratory',
       icon: '🧪',
       description: 'Parallel experiment feature for controlled variable testing and optimal solution discovery',
+      status: 'in-progress',
     },
     {
       date: '2026 Q2',
@@ -375,7 +378,7 @@ function HomepageCTA() {
 }
 
 export default function Home(): React.JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`${siteConfig.title} - Multi-Agent Federation System`}

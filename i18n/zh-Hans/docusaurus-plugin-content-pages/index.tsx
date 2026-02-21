@@ -112,10 +112,9 @@ function ParticleBackground() {
 }
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <ParticleBackground />
+    <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
@@ -257,7 +256,7 @@ function HomepageShowcase() {
   );
 }
 
-function TimelineMilestone({date, title, description, icon, isLeft, completed}: {
+function TimelineMilestone({ date, title, description, icon, isLeft, completed }: {
   date: string;
   title: string;
   description: string;
@@ -375,7 +374,7 @@ function HomepageCTA() {
 }
 
 export default function Home(): React.JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`${siteConfig.title} - 多智能体联邦系统`}
